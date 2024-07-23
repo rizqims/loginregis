@@ -55,7 +55,7 @@ func (u *userRepo) Register(payload model.User) (model.User, error) {
 
 func (u *userRepo) Login(payload dto.LoginDto) (dto.LoginDto, error) {
 	var user = dto.LoginDto{}
-	err := u.db.QueryRow("SELECT password FROM users WHERE username=$1 AND password=$2", payload.Username, payload.Password).Scan(
+	err := u.db.QueryRow("SELECT password FROM users WHERE username=$1", payload.Username).Scan(
 		&user.Password,
 	)
 	if err != nil {

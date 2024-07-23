@@ -34,7 +34,7 @@ CREATE TABLE
     `id` int (12) NOT NULL,
     `name` varchar(24) NOT NULL,
     `username` varchar(24) NOT NULL,
-    `password` varchar(24) NOT NULL,
+    `password` varchar(100) NOT NULL,
     `address` varchar(24) NOT NULL,
     `age` int (12) NOT NULL
   ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_general_ci;
@@ -64,12 +64,12 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 -- for postgresql
--- CREATE TABLE
---   users (
---     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
---     name varchar(24) NOT NULL,
---     username varchar(24) NOT NULL,
---     password varchar(24) NOT NULL,
---     address varchar(24) NOT NULL,
---     age int NOT NULL
---   );
+CREATE TABLE
+  users (
+    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
+    name varchar(24) NOT NULL,
+    username varchar(24) NOT NULL,
+    password varchar(100) NOT NULL,
+    address varchar(24) NOT NULL,
+    age int NOT NULL
+  );

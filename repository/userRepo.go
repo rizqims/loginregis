@@ -23,17 +23,20 @@ func (u *userRepo) Register(payload model.User) (model.User, error) {
 	}
 
 	newUser := model.User{}
-	err = t.QueryRow("INSERT INTO users (name, address, age, username, password) VALUES ($1,$2,$3,$4,$5) RETURNING id",
+	_, err = t.Exec("INSERT INTO users (name, address, age, username, password) VALUES ($1,$2,$3,$4,$5)",
 		payload.Name,
 		payload.Address,
 		payload.Age,
 		payload.Username,
 		payload.Password,
-	).Scan(
-		&newUser.ID,
 	)
 	if err != nil {
-		return model.User{}, fmt.Errorf("queryrow error: %v", err)
+		return model.User{}, fmt.Errorf("exec error: %v", err)
+	}
+
+	err = t.QueryRow("SELECT id FROM users WHERE username=$1", payload.Username).Scan(&newUser.ID)
+	if err != nil {
+		return model.User{}, fmt.Errorf("get id error: %v", err)
 	}
 
 	err = t.Commit()

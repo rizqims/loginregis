@@ -6,7 +6,7 @@ body {
 
 .bg-card {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/Asset/image/background.jpg");
+    url("/Views/Asset/image/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

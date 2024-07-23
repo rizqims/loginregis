@@ -11,6 +11,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
+	"go-sql-driver/mysql"
 )
 
 type Server struct {
@@ -36,9 +37,18 @@ func NewServer() *Server {
 		log.Fatal("error on ENV: ")
 	}
 
-	dbConn := fmt.Sprintf("user=%v password=%v host=%v port=%v dbname=%v sslmode=disable",
-		cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.Dbname)
-	db, err := sql.Open(cfg.Driver, dbConn)
+	db := &sql.DB{}
+	if cfg.Driver == "mysql" {
+		// your_username:your_password@tcp(127.0.0.1:3306)/your_database_name
+		dbConn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v",
+			cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.Dbname)
+		db, err = sql.Open(cfg.Driver, dbConn)
+
+	} else if cfg.Driver == "postgres" {
+		dbConn := fmt.Sprintf("user=%v password=%v host=%v port=%v dbname=%v sslmode=disable",
+			cfg.User, cfg.Password, cfg.Host, cfg.Port, cfg.Dbname)
+		db, err = sql.Open(cfg.Driver, dbConn)
+	}
 
 	userRepo := repository.NewUserRepo(db)
 	userService := service.NewUserService(userRepo)

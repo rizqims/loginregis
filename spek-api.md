@@ -1,6 +1,6 @@
 ### Register
 
-#### POST /users/register
+#### POST api/v1/users/register
 
 request
 ```json
@@ -28,7 +28,7 @@ response
 }
 ```
 
-#### POST /users/login
+#### POST api/v1/users/login
 
 request
 ```json

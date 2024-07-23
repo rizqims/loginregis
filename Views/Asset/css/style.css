@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  font-family: "Jost", sans-serif;
+}
+
+.bg-card {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/Asset/image/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+input {
+  background-color: rgb(2, 0, 20);
+  border: 1.5px solid rgb(18, 0, 81);
+}
+
+input::placeholder {
+  color: rgba(115, 115, 115, 0.558);
+  font-size: 0.9rem;
+}

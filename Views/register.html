@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <!-- TailWind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Costum CSS -->
+    <link rel="stylesheet" href="Asset/css/style.css">
+</head>
+
+<body>
+    <!-- Login Section -->
+    <section class="bg-card min-h-screen min-w-full flex items-center justify-center">
+
+        <!-- Login Card -->
+        <div class="bg-gray-950 flex items-center rounded-md xl:w-7/12 md:w-8/12 md:min-h-24 min-h-screen size-full">
+            <div class="md:w-1/2 px-10 size-full py-8">
+                <h2 class="font-bold text-3xl text-white">Register Yourself</h2>
+                <h4 class="font-light text-sm pt-2 text-gray-300">Register Your Account</h4>
+
+                <!-- Login Form -->
+                <form action="" class="flex flex-col gap-4">
+
+                    <!-- Email Input -->
+                    <div class="flex flex-col mt-6">
+                        <label for="email" class="text-white mb-2 font-medium text-sm">Your Email</label>
+                        <input class="py-2 px-2 rounded-sm border" type="email" name="email"
+                            placeholder="Input Your Email Here">
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="flex flex-col">
+                        <label for="email" class="text-white mb-2 font-medium text-sm">Your Password</label>
+                        <input class="py-2 px-2 rounded-sm border" type="password" name="email"
+                            placeholder="Input Your Password Here">
+                    </div>
+
+                    <!-- Password Confirm -->
+                    <div class="flex flex-col">
+                        <label for="email" class="text-white mb-2 font-medium text-sm">Confirm Password</label>
+                        <input class="py-2 px-2 rounded-sm border" type="password" name="email"
+                            placeholder="Confirm Your Password">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button class="bg-[#1F3444] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4">
+                        Login
+                    </button>
+
+                    <!-- Register Link -->
+                    <p class="text-white text-center mt-4 font-normal text-sm">Already Have Account?
+                        <a href="login.html" class="text-[#BADAE4] font-medium text-sm">Register</a>
+                    </p>
+
+                </form>
+            </div>
+
+            <!-- Login Image -->
+            <div class="md:block hidden w-1/2">
+                <div class="bg-auto flex justify-end">
+                    <img src="Asset/image/bgg.jpg" alt="hero-image" style="height: 540px; width: 100%;"
+                        class="rounded-md">
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

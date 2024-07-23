@@ -23,7 +23,13 @@ func (u *userRepo) Register(payload model.User) (model.User, error) {
 	}
 
 	newUser := model.User{}
-	err = t.QueryRow("INSERT INTO users (name, address, age, username, password) VALUES ($1,$2,$3,$4,$5) RETURNING id").Scan(
+	err = t.QueryRow("INSERT INTO users (name, address, age, username, password) VALUES ($1,$2,$3,$4,$5) RETURNING id",
+		payload.Name,
+		payload.Address,
+		payload.Age,
+		payload.Username,
+		payload.Password,
+	).Scan(
 		&newUser.ID,
 	)
 	if err != nil {
@@ -46,7 +52,7 @@ func (u *userRepo) Register(payload model.User) (model.User, error) {
 
 func (u *userRepo) Login(payload dto.LoginDto) (dto.LoginDto, error) {
 	var user = dto.LoginDto{}
-	err := u.db.QueryRow("SELECT password FROM users WHERE username=$1 AND password=$2").Scan(
+	err := u.db.QueryRow("SELECT password FROM users WHERE username=$1 AND password=$2", payload.Username, payload.Password).Scan(
 		&user.Password,
 	)
 	if err != nil {

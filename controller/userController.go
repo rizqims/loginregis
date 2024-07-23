@@ -18,7 +18,7 @@ type UserController struct {
 
 func (u *UserController) Route() {
 	group := u.rg.Group("/users")
-	group.POST("/regiter", u.RegisHandler)
+	group.POST("/register", u.RegisHandler)
 	group.POST("/login", u.LoginHandler)
 }
 
@@ -27,12 +27,14 @@ func (u *UserController) RegisHandler(c *gin.Context) {
 	err := c.ShouldBindJSON(&payload)
 	if err != nil {
 		util.SendErrorRes(c, http.StatusBadRequest, "request is invalid!")
+		return
 	}
 
 	response, err := u.userService.Register(payload)
 	if err != nil {
 		errory := fmt.Errorf("server error: %v", err)
 		util.SendErrorRes(c, http.StatusInternalServerError, errory.Error())
+		return
 	}
 
 	util.SendSuccessRes(c, http.StatusOK, "Register Success", response)
@@ -43,15 +45,17 @@ func (u *UserController) LoginHandler(c *gin.Context) {
 	err := c.ShouldBindJSON(&payload)
 	if err != nil {
 		util.SendErrorRes(c, http.StatusBadRequest, "request is invalid!")
+		return
 	}
 
 	err = u.userService.Login(payload)
 	if err != nil {
 		errory := fmt.Errorf("server error: %v", err)
 		util.SendErrorRes(c, http.StatusInternalServerError, errory.Error())
+		return
 	}
 
-	util.SendSuccessRes(c, http.StatusOK, "Login Success", 0)
+	util.SendSuccessRes(c, http.StatusOK, "Login Success", nil)
 
 }
 

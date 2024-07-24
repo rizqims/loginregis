@@ -24,33 +24,77 @@
                 <h4 class="font-light text-sm pt-2 text-gray-300">Register Your Account</h4>
 
                 <!-- Login Form -->
-                <form action="" class="flex flex-col gap-4" id="form-regis">
+                <form action="" class="flex flex-col gap-2" id="form-regis">
 
-                    <!-- Email Input -->
-                    <div class="flex flex-col mt-6">
-                        <label for="username" class="text-white mb-2 font-medium text-sm">Your Username</label>
-                        <input class="py-2 px-2 rounded-sm border" type="text" name="username"
-                            placeholder="Input Your Username Here">
+                    <div class="flex flex-col gap-4" id="page-1">
+                        <!-- Email Input -->
+                        <div class="flex flex-col mt-6">
+                            <label for="name" class="text-white mb-2 font-medium text-sm">Your Name</label>
+                            <input class="py-2 px-2 rounded-sm border" type="text" name="name"
+                                placeholder="Input Your Name Here">
+                        </div>
+
+                        <!-- Password Input -->
+                        <div class="flex flex-col">
+                            <label for="address" class="text-white mb-2 font-medium text-sm">Your Address</label>
+                            <input class="py-2 px-2 rounded-sm border" type="text" name="address"
+                                placeholder="Input Your Address Here">
+                        </div>
+
+                        <!-- Password Confirm -->
+                        <div class="flex flex-col">
+                            <label for="age" class="text-white mb-2 font-medium text-sm">Your Age</label>
+                            <input class="py-2 px-2 rounded-sm border" type="number" name="age"
+                                placeholder="Input Your Age Here">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <a href="#" onclick="regisFunction()"
+                            class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4 text-center">
+                            Selanjutnya
+                        </a>
+
+                        <!-- Submit Button -->
+                        <!-- <button class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4">
+                            Register
+                        </button> -->
                     </div>
 
-                    <!-- Password Input -->
-                    <div class="flex flex-col">
-                        <label for="pw" class="text-white mb-2 font-medium text-sm">Your Password</label>
-                        <input class="py-2 px-2 rounded-sm border" type="password" name="pw"
-                            placeholder="Input Your Password Here">
-                    </div>
+                    <div class="flex flex-col gap-4 on" id="page-2">
+                        <!-- Email Input -->
+                        <div class="flex flex-col mt-6">
+                            <label for="username" class="text-white mb-2 font-medium text-sm">Your Username</label>
+                            <input class="py-2 px-2 rounded-sm border" type="text" name="username"
+                                placeholder="Input Your Username Here">
+                        </div>
 
-                    <!-- Password Confirm -->
-                    <div class="flex flex-col">
-                        <label for="pw2" class="text-white mb-2 font-medium text-sm">Confirm Password</label>
-                        <input class="py-2 px-2 rounded-sm border" type="password" name="pw2"
-                            placeholder="Confirm Your Password">
-                    </div>
+                        <!-- Password Input -->
+                        <div class="flex flex-col">
+                            <label for="pw" class="text-white mb-2 font-medium text-sm">Your Password</label>
+                            <input class="py-2 px-2 rounded-sm border" type="password" name="pw"
+                                placeholder="Input Your Password Here">
+                        </div>
 
-                    <!-- Submit Button -->
-                    <button class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4">
-                        Register
-                    </button>
+                        <!-- Password Confirm -->
+                        <div class="flex flex-col">
+                            <label for="pw2" class="text-white mb-2 font-medium text-sm">Confirm Password</label>
+                            <input class="py-2 px-2 rounded-sm border" type="password" name="pw2"
+                                placeholder="Confirm Your Password">
+                        </div>
+
+                        <div class="flex gap-2">
+                            <!-- Submit Button -->
+                            <a href="#" onclick="regisFunction()"
+                                class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4 text-center w-1/2">
+                                Kembali
+                            </a>
+                            <!-- Submit Button -->
+                            <button
+                                class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4 text-center w-1/2">
+                                Register
+                            </button>
+                        </div>
+                    </div>
 
                     <!-- Register Link -->
                     <p class="text-white text-center mt-4 font-normal text-sm">Already Have Account?
@@ -93,6 +137,15 @@
                 .then(data => regisUser(data))
                 .catch(error => console.log(error))
         })
+    </script>
+    <script>
+        function regisFunction() {
+            const element = document.querySelector("#page-1")
+            const element2 = document.querySelector("#page-2")
+            console.log(element);
+            element.classList.toggle("on");
+            element2.classList.toggle("on");
+        }
     </script>
 </body>
 

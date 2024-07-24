@@ -42,3 +42,7 @@ body {
   color: rgba(137, 137, 137, 0.558);
   font-size: 0.9rem;
 }
+
+.on {
+  display: none !important;
+}

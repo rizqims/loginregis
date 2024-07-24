@@ -4,20 +4,39 @@ body {
   font-family: "Jost", sans-serif;
 }
 
-.bg-card {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/Views/Asset/image/background.jpg");
+.bg-card,
+.bg-card-regis {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-input {
+.bg-card {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/Views/Asset/image/background.jpg");
+}
+
+.bg-card-regis {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.737)),
+    url("/Views/Asset/image/background2.jpg");
+}
+
+.bg-card input {
   background-color: rgb(2, 0, 20);
   border: 1.5px solid rgb(18, 0, 81);
 }
 
-input::placeholder {
+.bg-card-regis input {
+  background-color: #201514;
+  border: 1.5px solid #180606;
+}
+
+.bg-card input::placeholder {
   color: rgba(115, 115, 115, 0.558);
+  font-size: 0.9rem;
+}
+
+.bg-card-regis input::placeholder {
+  color: rgba(137, 137, 137, 0.558);
   font-size: 0.9rem;
 }

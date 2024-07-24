@@ -14,16 +14,17 @@
 
 <body>
     <!-- Login Section -->
-    <section class="bg-card min-h-screen min-w-full flex items-center justify-center">
+    <section class="bg-card-regis min-h-screen min-w-full flex items-center justify-center">
 
         <!-- Login Card -->
-        <div class="bg-gray-950 flex items-center rounded-md xl:w-7/12 md:w-8/12 md:min-h-24 min-h-screen size-full">
+        <div
+            class="bg-[#180606] flex flex-row-reverse items-center rounded-md xl:w-7/12 md:w-8/12 md:min-h-24 min-h-screen size-full">
             <div class="md:w-1/2 px-10 size-full py-8">
                 <h2 class="font-bold text-3xl text-white">Register Yourself</h2>
                 <h4 class="font-light text-sm pt-2 text-gray-300">Register Your Account</h4>
 
                 <!-- Login Form -->
-                <form action="" class="flex flex-col gap-4">
+                <form action="" class="flex flex-col gap-4" id="form-regis">
 
                     <!-- Email Input -->
                     <div class="flex flex-col mt-6">
@@ -47,13 +48,13 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button class="bg-[#1F3444] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4">
+                    <button class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4">
                         Register
                     </button>
 
                     <!-- Register Link -->
                     <p class="text-white text-center mt-4 font-normal text-sm">Already Have Account?
-                        <a href="login.html" class="text-[#BADAE4] font-medium text-sm">Login</a>
+                        <a href="login.html" class="text-[#86a858] font-medium text-sm">Login</a>
                     </p>
 
                 </form>
@@ -62,12 +63,37 @@
             <!-- Login Image -->
             <div class="md:block hidden w-1/2">
                 <div class="bg-auto flex justify-end">
-                    <img src="Asset/image/bgg.jpg" alt="hero-image" style="height: 540px; width: 100%;"
+                    <img src="Asset/image/back2.jpg" alt="hero-image" style="height: 540px; width: 100%;"
                         class="rounded-md">
                 </div>
             </div>
         </div>
     </section>
+
+    <script src="Asset/js/script.js"></script>
+    <script>
+        const form = document.querySelector("#form-regis")
+
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+
+            // Tes Data Masuk atau Tidak
+            // console.log(data);
+
+            // fetch('http://localhost:8080/api/v1/users/register', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data)
+            // }).then(res => res.json())
+            //     .then(data => console.log(data))
+            //     .catch(error => console.log(error))
+        })
+    </script>
 </body>
 
 </html>

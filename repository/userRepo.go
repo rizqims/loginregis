@@ -3,6 +3,7 @@ package repository
 import (
 	"database/sql"
 	"fmt"
+	"loginregis/config"
 	"loginregis/model"
 	"loginregis/model/dto"
 )
@@ -22,8 +23,16 @@ func (u *userRepo) Register(payload model.User) (model.User, error) {
 		return model.User{}, fmt.Errorf("begin error: %v", err)
 	}
 
+	var str string
+	c, err := config.NewConfig()
+	if c.Driver == "postgres" {
+		str = "INSERT INTO users (name, address, age, username, password) VALUES ($1,$2,$3,$4,$5)"
+	} else if c.Driver == "mysql" {
+		str = "INSERT INTO users (name, address, age, username, password) VALUES (?,?,?,?,?)"
+	}
+
 	newUser := model.User{}
-	_, err = t.Exec("INSERT INTO users (name, address, age, username, password) VALUES ($1,$2,$3,$4,$5)",
+	_, err = t.Exec(str,
 		payload.Name,
 		payload.Address,
 		payload.Age,

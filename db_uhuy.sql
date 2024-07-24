@@ -64,12 +64,23 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 -- for postgresql
-CREATE TABLE
-  users (
-    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
-    name varchar(24) NOT NULL,
-    username varchar(24) NOT NULL,
-    password varchar(100) NOT NULL,
-    address varchar(24) NOT NULL,
-    age int NOT NULL
-  );
+-- CREATE TABLE
+--   users (
+--     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY NOT NULL,
+--     name varchar(24) NOT NULL,
+--     username varchar(24) NOT NULL,
+--     password varchar(100) NOT NULL,
+--     address varchar(24) NOT NULL,
+--     age int NOT NULL
+--   );
+
+
+--   CREATE TABLE
+--   users (
+--     id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+--     name varchar(24) NOT NULL,
+--     username varchar(24) NOT NULL,
+--     password varchar(100) NOT NULL,
+--     address varchar(24) NOT NULL,
+--     age int NOT NULL
+--   );

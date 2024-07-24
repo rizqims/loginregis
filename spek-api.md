@@ -6,10 +6,10 @@ request
 ```json
 {
     "name":"string",
-    "address":string",
+    "address":"string",
     "age":int,
     "username":"string",
-    "password":"string
+    "password":"string"
 }
 ```
 

@@ -1,6 +1,6 @@
-const loginUrl = "http://localhost:8080/api/v1/users/register";
+const loginUrl = "http://localhost:8080/api/v1/users/login";
 
-const data = "./data.json";
+// const data = "./data.json";
 
 async function fetchData(url) {
   try {
@@ -31,7 +31,7 @@ async function regisUser(data) {
 }
 
 async function main() {
-  const data = await fetchData("./data.json");
+  const data = await fetchData("");
   await regisUser(data);
 }
 

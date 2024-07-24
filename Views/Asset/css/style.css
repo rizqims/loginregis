@@ -24,11 +24,13 @@ body {
 .bg-card input {
   background-color: rgb(2, 0, 20);
   border: 1.5px solid rgb(18, 0, 81);
+  color: #fafafa;
 }
 
 .bg-card-regis input {
   background-color: #201514;
   border: 1.5px solid #180606;
+  color: #fafafa;
 }
 
 .bg-card input::placeholder {

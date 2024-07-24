@@ -23,11 +23,13 @@ func (u *userRepo) Register(payload model.User) (model.User, error) {
 		return model.User{}, fmt.Errorf("begin error: %v", err)
 	}
 
-	var str string
+	var str, selectID string
 	c, err := config.NewConfig()
 	if c.Driver == "postgres" {
+		selectID = "SELECT id FROM users WHERE username=$1"
 		str = "INSERT INTO users (name, address, age, username, password) VALUES ($1,$2,$3,$4,$5)"
 	} else if c.Driver == "mysql" {
+		selectID = "SELECT id FROM users WHERE username=?"
 		str = "INSERT INTO users (name, address, age, username, password) VALUES (?,?,?,?,?)"
 	}
 
@@ -40,12 +42,12 @@ func (u *userRepo) Register(payload model.User) (model.User, error) {
 		payload.Password,
 	)
 	if err != nil {
-		return model.User{}, fmt.Errorf("exec error: %v", err)
+		return model.User{}, t.Rollback()
 	}
 
-	err = t.QueryRow("SELECT id FROM users WHERE username=$1", payload.Username).Scan(&newUser.ID)
+	err = t.QueryRow(selectID, payload.Username).Scan(&newUser.ID)
 	if err != nil {
-		return model.User{}, fmt.Errorf("get id error: %v", err)
+		return model.User{}, t.Rollback()
 	}
 
 	err = t.Commit()
@@ -64,7 +66,16 @@ func (u *userRepo) Register(payload model.User) (model.User, error) {
 
 func (u *userRepo) Login(payload dto.LoginDto) (dto.LoginDto, error) {
 	var user = dto.LoginDto{}
-	err := u.db.QueryRow("SELECT password FROM users WHERE username=$1", payload.Username).Scan(
+
+	var logQuery string
+	c, err := config.NewConfig()
+	if c.Driver == "postgres" {
+		logQuery = "SELECT password FROM users WHERE username=$1"
+	} else if c.Driver == "mysql" {
+		logQuery = "SELECT password FROM users WHERE username=?"
+	}
+
+	err = u.db.QueryRow(logQuery, payload.Username).Scan(
 		&user.Password,
 	)
 	if err != nil {

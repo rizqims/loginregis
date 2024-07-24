@@ -2,7 +2,6 @@ package controller
 
 import (
 	"fmt"
-	"loginregis/model"
 	"loginregis/model/dto"
 	"loginregis/service"
 	"loginregis/util"
@@ -23,7 +22,7 @@ func (u *UserController) Route() {
 }
 
 func (u *UserController) RegisHandler(c *gin.Context) {
-	var payload model.User
+	var payload dto.RegisDto
 	err := c.ShouldBindJSON(&payload)
 	if err != nil {
 		util.SendErrorRes(c, http.StatusBadRequest, "request is invalid!")

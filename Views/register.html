@@ -27,7 +27,7 @@
                 <form action="" class="flex flex-col gap-2" id="form-regis">
 
                     <div class="flex flex-col gap-4" id="page-1">
-                        <!-- Email Input -->
+                        <!-- Name Input -->
                         <div class="flex flex-col mt-6">
                             <label for="name" class="text-white mb-2 font-medium text-sm">Your Name</label>
                             <input class="py-2 px-2 rounded-sm border" type="text" name="name"
@@ -71,14 +71,14 @@
                         <!-- Password Input -->
                         <div class="flex flex-col">
                             <label for="pw" class="text-white mb-2 font-medium text-sm">Your Password</label>
-                            <input class="py-2 px-2 rounded-sm border" type="password" name="pw"
+                            <input class="py-2 px-2 rounded-sm border" type="password" name="password"
                                 placeholder="Input Your Password Here">
                         </div>
 
                         <!-- Password Confirm -->
                         <div class="flex flex-col">
                             <label for="pw2" class="text-white mb-2 font-medium text-sm">Confirm Password</label>
-                            <input class="py-2 px-2 rounded-sm border" type="password" name="pw2"
+                            <input class="py-2 px-2 rounded-sm border" type="password" name="passConfirm"
                                 placeholder="Confirm Your Password">
                         </div>
 
@@ -114,7 +114,6 @@
         </div>
     </section>
 
-    <script src="Asset/js/script.js"></script>
     <script>
         const form = document.querySelector("#form-regis")
 
@@ -134,7 +133,7 @@
                 },
                 body: JSON.stringify(data)
             }).then(res => res.json())
-                .then(data => regisUser(data))
+                .then(data => console.log(JSON.stringify(data)))
                 .catch(error => console.log(error))
         })
     </script>

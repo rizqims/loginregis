@@ -44,7 +44,7 @@ func (c *Config) ReadConfig() error {
 		PortApp: os.Getenv("PORTAPP"),
 	}
 
-	if c.User == "" || c.Password == "" || c.Host == "" || c.Port == "" || c.Dbname == "" || c.Driver == "" || c.PortApp == "" {
+	if c.User == "" || c.Host == "" || c.Port == "" || c.Dbname == "" || c.Driver == "" || c.PortApp == "" {
 		return fmt.Errorf("ENV na kosong mang")
 	}
 	return nil

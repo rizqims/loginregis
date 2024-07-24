@@ -8,7 +8,9 @@ import (
 	"loginregis/controller"
 	"loginregis/repository"
 	"loginregis/service"
+	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/lib/pq"
@@ -21,8 +23,18 @@ type Server struct {
 }
 
 func (s *Server) initiateServer() {
+	// Configure CORS
+	s.g.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://127.0.0.1:5500"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
+
 	group := s.g.Group("/api/v1")
 	controller.NewUserController(group, s.uS).Route()
+
 }
 
 func (s *Server) Start() {

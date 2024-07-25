@@ -13,6 +13,32 @@
 </head>
 
 <body>
+    <!-- Alert Background -->
+    <div class="alert-background-on min-h-screen min-w-full flex items-center justify-center" id="login-bg"></div>
+
+    <!-- Alert Error -->
+    <div class="login-alert-on flex flex-col justify-center items-center rounded-md" id="login-alert">
+        <img src="Asset/image/Alert Blue.png" alt="">
+        <div class="text-white text-sm mt-6 w-3/4 text-center">
+            <p>Username / Password Incorrect</p>
+        </div>
+        <a href="#" class="bg-[#1F3444] rounded-sm text-white py-2 px-2 text-center mt-4 w-3/4"
+            onclick="alertFunction()">
+            Close
+        </a>
+    </div>
+
+    <!-- Alert Success -->
+    <div class="login-alert-on flex flex-col justify-center items-center rounded-md" id="login-alert-success">
+        <img src="Asset/image/Success Blue.png" alt="">
+        <div class="text-white text-sm mt-6 w-3/4 text-center">
+            <p>Login Success</p>
+        </div>
+        <a href="login.html" class="bg-[#1F3444] rounded-sm text-white py-2 px-2 text-center mt-4 w-3/4">
+            Continue
+        </a>
+    </div>
+
     <!-- Login Section -->
     <section class="bg-card min-h-screen min-w-full flex items-center justify-center">
 
@@ -40,7 +66,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <button class="bg-[#1F3444] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4">
+                    <button class="bg-[#1F3444] rounded-sm text-white py-2 px-2 mt-4">
                         Login
                     </button>
 
@@ -81,9 +107,35 @@
                 },
                 body: JSON.stringify(data)
             }).then(res => res.json())
-                .then(data => console.log(JSON.stringify(data)))
+                .then(data => {
+                    if (JSON.stringify(data.code) == 500) {
+                        alertFunction();
+                    } else {
+                        alertSuccessFunction();
+                    }
+                })
                 .catch(error => console.log(error))
         })
+    </script>
+    <script>
+
+        function alertFunction() {
+            const element = document.querySelector("#login-bg")
+            const element2 = document.querySelector("#login-alert")
+            element2.classList.toggle("login-alert-on")
+            element2.classList.toggle("login-alert")
+            element.classList.toggle("alert-background")
+            element.classList.toggle("alert-background-on")
+        }
+
+        function alertSuccessFunction() {
+            const element = document.querySelector("#login-bg")
+            const element2 = document.querySelector("#login-alert-success")
+            element2.classList.toggle("login-alert-on")
+            element2.classList.toggle("login-alert")
+            element.classList.toggle("alert-background")
+            element.classList.toggle("alert-background-on")
+        }
     </script>
 </body>
 

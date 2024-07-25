@@ -13,17 +13,44 @@
 </head>
 
 <body>
-    <!-- Login Section -->
+    <!-- Register Section -->
+
+    <!-- Alert Background -->
+    <div class="alert-background-on min-h-screen min-w-full flex items-center justify-center" id="regis-bg"></div>
+
+    <!-- Alert Error -->
+    <div class="alert-on flex flex-col justify-center items-center rounded-md" id="regis-alert">
+        <img src="Asset/image/Alert Brown.png" alt="">
+        <div class="text-white text-sm mt-6 w-3/4 text-center">
+            <p>Username / Password Incorrect</p>
+        </div>
+        <a href="#" class="bg-[#647b43] rounded-sm text-white py-2 px-2 text-center mt-4 w-3/4"
+            onclick="alertFunction()">
+            Close
+        </a>
+    </div>
+
+    <!-- Alert Success -->
+    <div class="alert-on flex flex-col justify-center items-center rounded-md" id="regis-alert-success">
+        <img src="Asset/image/Success Brown.png" alt="">
+        <div class="text-white text-sm mt-6 w-3/4 text-center">
+            <p>Registration Success, Please Login</p>
+        </div>
+        <a href="login.html" class="bg-[#647b43] rounded-sm text-white py-2 px-2 text-center mt-4 w-3/4">
+            Continue
+        </a>
+    </div>
+
     <section class="bg-card-regis min-h-screen min-w-full flex items-center justify-center">
 
-        <!-- Login Card -->
+        <!-- Register Card -->
         <div
             class="bg-[#180606] flex flex-row-reverse items-center rounded-md xl:w-7/12 md:w-8/12 md:min-h-24 min-h-screen size-full">
             <div class="md:w-1/2 px-10 size-full py-8">
                 <h2 class="font-bold text-3xl text-white">Register Yourself</h2>
                 <h4 class="font-light text-sm pt-2 text-gray-300">Register Your Account</h4>
 
-                <!-- Login Form -->
+                <!-- Register Form -->
                 <form action="" class="flex flex-col gap-2" id="form-regis">
 
                     <div class="flex flex-col gap-4" id="page-1">
@@ -50,12 +77,12 @@
 
                         <!-- Submit Button -->
                         <a href="#" onclick="regisFunction()"
-                            class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4 text-center">
+                            class="bg-[#647b43] rounded-sm text-white py-2 px-2 mt-4 text-center">
                             Selanjutnya
                         </a>
 
                         <!-- Submit Button -->
-                        <!-- <button class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4">
+                        <!-- <button class="bg-[#647b43] rounded-sm text-white py-2 px-2 mt-4">
                             Register
                         </button> -->
                     </div>
@@ -85,12 +112,11 @@
                         <div class="flex gap-2">
                             <!-- Submit Button -->
                             <a href="#" onclick="regisFunction()"
-                                class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4 text-center w-1/2">
+                                class="bg-[#647b43] rounded-sm text-white py-2 px-2 mt-4 text-center w-1/2">
                                 Kembali
                             </a>
                             <!-- Submit Button -->
-                            <button
-                                class="bg-[#647b43] rounded-sm text-white py-2 px-2 hover:scale-105 duration-300 mt-4 text-center w-1/2">
+                            <button class="bg-[#647b43] rounded-sm text-white py-2 px-2 mt-4 text-center w-1/2">
                                 Register
                             </button>
                         </div>
@@ -133,7 +159,14 @@
                 },
                 body: JSON.stringify(data)
             }).then(res => res.json())
-                .then(data => console.log(JSON.stringify(data)))
+                .then(data => {
+                    if (JSON.stringify(data.code) == 500) {
+                        alertFunction();
+                    } else {
+                        alertSuccessFunction();
+                    }
+                }
+                )
                 .catch(error => console.log(error))
         })
     </script>
@@ -144,6 +177,24 @@
             console.log(element);
             element.classList.toggle("on");
             element2.classList.toggle("on");
+        }
+
+        function alertFunction() {
+            const element = document.querySelector("#regis-bg")
+            const element2 = document.querySelector("#regis-alert")
+            element2.classList.toggle("alert-on")
+            element2.classList.toggle("alert")
+            element.classList.toggle("alert-background")
+            element.classList.toggle("alert-background-on")
+        }
+
+        function alertSuccessFunction() {
+            const element = document.querySelector("#regis-bg")
+            const element2 = document.querySelector("#regis-alert-success")
+            element2.classList.toggle("alert-on")
+            element2.classList.toggle("alert")
+            element.classList.toggle("alert-background")
+            element.classList.toggle("alert-background-on")
         }
     </script>
 </body>
